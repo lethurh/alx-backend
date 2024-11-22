@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ 4-main """
-MRUCache = __import__('4-mru_cache').MRUCache
+MRUCache = _import_('4-mru_cache').MRUCache
 
 my_cache = MRUCache()
 my_cache.put("A", "Hello")

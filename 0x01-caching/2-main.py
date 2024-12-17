@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ 2-main """
-LIFOCache = _import_('2-lifo_cache').LIFOCache
+LIFOCache = __import__('2-lifo_cache').LIFOCache
 
 my_cache = LIFOCache()
 my_cache.put("A", "Hello")

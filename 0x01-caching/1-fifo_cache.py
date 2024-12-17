@@ -1,43 +1,37 @@
 #!/usr/bin/env python3
-"""Module for task 1.
-"""
-from collections import OrderedDict
 
+'''Task 1: FIFO caching
+'''
+
+
+from collections import OrderedDict
 from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
-    """A caching system that inherits from BaseCaching and uses a FIFO
-    algorithm to discard items.
+    '''A class `FIFOCache` that inherits from
+       `BaseCaching` and is a caching system.
+    '''
 
-    Args:
-        BaseCaching (type): description
-    """
-    def _init_(self):
-        """Initializes the cache and calls the parent class's init method.
-        """
-        super()._init_()
+    def __init__(self):
+        super().__init__()
         self.cache_data = OrderedDict()
 
     def put(self, key, item):
-        """Assigns the item value to the key in the dictionary self.cache_data.
-        If key or item is None, this method should not do anything.
-        If the number of items in self.cache_data is higher than
-        BaseCaching.MAX_ITEMS, the oldest item is discarded using a FIFO
-        algorithm and a message is printed.
+        '''assign to the dictionary `self.cache_data` the
+           `item` value for the key `key`
+        '''
 
-        Args:
-            key (any): param1.
-            item (any): param2.
-        """
         if key is None or item is None:
             return
-        self.cache_data[key] = item
+
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            first_key, _ = self.cache_data.popitem(False)
-            print("DISCARD:", first_key)
+            first_key, _ = self.cache_data.popitem(last=False)
+            print(f"DISCARD: {first_key}")
+
+        self.cache_data[key] = item
 
     def get(self, key):
-        """Retrieves an item by key.
-        """
+        '''return the value in `self.cache_data` linked to `key`
+        '''
         return self.cache_data.get(key, None)
